@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>카드형 사진 갤러리</title>
+  <!-- Google Fonts: Montserrat, Nanum Gothic -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reset.css">
+</head>
+
+<body>
+  <!-- 오로라 배경 -->
+  <div class="aurora-bg"></div>
+
+<!-- 햄버거 메뉴 토글용 체크박스 (숨김) -->
+<input type="checkbox" id="menu-toggle" class="menu-toggle" />
+<label for="menu-toggle" class="hamburger" aria-label="메뉴 열기">
+  <span></span>
+  <span></span>
+  <span></span>
+</label>
+
+<!-- 실제 메뉴 -->
+<nav class="sidebar-menu">
+  <a href="index.html">🏠 홈</a>
+  <a href="login.html">🔑 로그인</a>
+  <a href="contact.html">📢 광고문의</a>
+</nav>
+
+  <header class="main-header">
+    <a href="index.html" class="site-title">카드형 사진 갤러리</a>
+
+    <p class="gallery-guide">각 사진을 누르면 관련 영상으로 연결됩니다.<br>추후에 더 많은 사진들을 추가 할 수 있게 할 예정입니다.</p>
+  </header>
+
+  <main>
+
+    <div class="gallery-container">
+      <a class="card" href="https://www.youtube.com/watch?v=MPNBJ7eB7GM" target="_blank">
+        <img src="숲 속의 아침.jpg" alt="숲 속의 아침">
+        <div class="desc">숲 속의 아침</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=vcys8LuoS9U" target="_blank">
+        <img src="https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=400&q=80" alt="고요한 호수">
+        <div class="desc">별하늘</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=ZfsbEntbDtc" target="_blank">
+        <img src="https://images.pexels.com/photos/219692/pexels-photo-219692.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="도시의 밤">
+        <div class="desc">도시의 밤</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=FbWpvP-uVlo" target="_blank">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=400&q=80" alt="바닷가">
+        <div class="desc">바닷가</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=hvrX7j0OifA" target="_blank">
+        <img src="https://images.pexels.com/photos/1598073/pexels-photo-1598073.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="폭포의 경치">
+        <div class="desc">폭포의 경치</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=GvWVY2UayPc" target="_blank">
+        <img src="https://images.pexels.com/photos/715134/pexels-photo-715134.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="가을 단풍">
+        <div class="desc">가을 단풍</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=EjxHpfZ8TTQ" target="_blank">
+        <img src="https://images.pexels.com/photos/542811/pexels-photo-542811.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="선셋">
+        <div class="desc">선셋</div>
+      </a>
+      <a class="card" href="https://www.youtube.com/watch?v=D7Vr3y85vtA" target="_blank">
+        <img src="https://images.pexels.com/photos/46160/field-clouds-sky-earth-46160.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="푸른 하늘">
+        <div class="desc">푸른 하늘</div>
+      </a>
+    </div>
+  </main>
+</body>
+</html>
