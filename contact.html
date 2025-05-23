@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>광고 문의 | 카드형 사진 갤러리</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reset.css">
+</head>
+
+<body>
+  <!-- 오로라 배경 -->
+  <div class="aurora-bg"></div>
+  <a href="index.html" class="site-title">카드형 사진 갤러리</a>
+
+
+  <!-- 햄버거 메뉴 (오른쪽 상단) -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="hamburger" aria-label="메뉴 열기">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="sidebar-menu">
+    <a href="index.html">🏠 홈</a>
+    <a href="login.html">🔑 로그인</a>
+    <a href="contact.html">📢 광고문의</a>
+  </nav>
+
+  <!-- 광고 문의 폼 -->
+  <div class="contact-container">
+    <form class="contact-form" autocomplete="off">
+      <h2>광고 문의</h2>
+      <p class="contact-desc">
+        갤러리와 함께할 광고/제휴 문의를 환영합니다.<br>
+        아래에 내용을 남겨주시면 빠르게 연락드리겠습니다.
+      </p>
+      <div class="input-group">
+        <label for="name">이름</label>
+        <input type="text" id="name" name="name" required placeholder="이름을 입력하세요">
+      </div>
+      <div class="input-group">
+        <label for="email">이메일</label>
+        <input type="email" id="email" name="email" required placeholder="이메일 주소">
+      </div>
+      <div class="input-group">
+        <label for="message">문의 내용</label>
+        <textarea id="message" name="message" rows="5" required placeholder="문의하실 내용을 입력해 주세요"></textarea>
+      </div>
+      <button type="submit" class="contact-btn">문의 보내기</button>
+    </form>
+  </div>
+</body>
+</html>

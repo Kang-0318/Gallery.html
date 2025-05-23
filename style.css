@@ -1,0 +1,882 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  min-height: 100vh;
+  background: transparent;
+  overflow-x: hidden;
+}
+
+/* 오로라 배경 */
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 20% 30%, rgba(0,255,255,0.35) 0, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(255,0,255,0.25) 0, transparent 70%),
+    radial-gradient(circle at 60% 80%, rgba(0,255,128,0.23) 0, transparent 70%),
+    radial-gradient(circle at 50% 50%, rgba(255,255,0,0.18) 0, transparent 70%),
+    linear-gradient(120deg, #1e215d 0%, #2a174e 100%);
+  filter: blur(0px) brightness(1.04);
+  animation: auroraMove 16s ease-in-out infinite alternate;
+}
+
+@keyframes auroraMove {
+  0% {
+    background-position:
+      20% 30%,
+      80% 20%,
+      60% 80%,
+      50% 50%,
+      0% 0%;
+  }
+  100% {
+    background-position:
+      30% 40%,
+      70% 30%,
+      50% 90%,
+      60% 60%,
+      100% 100%;
+  }
+}
+
+/* 햄버거 메뉴 아이콘 (오른쪽 상단) */
+.menu-toggle {
+  display: none;
+}
+.hamburger {
+  position: fixed;
+  top: 22px;
+  right: 22px;
+  left: auto;
+  width: 40px;
+  height: 40px;
+  background: rgba(30,33,93,0.97);
+  border-radius: 10px;
+  z-index: 30;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.08);
+  transition: background 0.2s;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 3px;
+  background: #c9eaff;
+  border-radius: 2px;
+  transition: background 0.2s;
+}
+.hamburger:hover {
+  background: #007bff;
+}
+.hamburger:active span {
+  background: #fff;
+}
+
+/* 슬라이드 메뉴 (오른쪽에서) */
+.sidebar-menu {
+  position: fixed;
+  top: 0;
+  right: -200px;
+  left: auto;
+  width: 200px;
+  height: 100vh;
+  background: rgba(30,33,93,0.85);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 60px;
+  z-index: 20;
+  box-shadow: -2px 0 16px rgba(0,0,0,0.12);
+  transition: right 0.35s cubic-bezier(.77,0,.18,1), background 0.3s;
+}
+.sidebar-menu a {
+  color: #c9eaff;
+  text-decoration: none;
+  margin-bottom: 28px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.sidebar-menu a:hover {
+  color: #fff;
+  background: rgba(0, 198, 255, 0.22);
+}
+
+/* 체크박스가 체크되면 메뉴 슬라이드 (오른쪽에서) */
+.menu-toggle:checked + .hamburger + .sidebar-menu {
+  right: 0;
+  left: auto;
+  background: rgba(30,33,93,0.97);
+  box-shadow: -2px 0 32px rgba(0,123,255,0.18);
+}
+
+/* 헤더 */
+.main-header {
+  margin-left: 70px;
+  padding-top: 32px;
+  text-align: center;
+}
+.main-header h1 {
+  margin-bottom: 14px;
+  font-size: 2.6rem;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #fff;
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0,0,0,0.18), 0 1px 0 #6ef8ff;
+}
+.gallery-guide {
+  color: #eafffd;
+  font-size: 1.08rem;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  background: rgba(0, 0, 0, 0.18);
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+  letter-spacing: -0.5px;
+  margin-bottom: 18px;
+}
+
+/* 본문(main) */
+main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 10px 30px 10px;
+  margin-left: 70px;
+}
+
+/* 사진 추가 버튼 */
+.add-photo-btn {
+  display: block;
+  margin: 0 auto 16px auto;
+  padding: 12px 36px;
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.13);
+  cursor: not-allowed;
+  opacity: 0.7;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+/* 갤러리 카드 */
+.gallery-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+  width: 100%;
+  margin: 0 auto;
+}
+a.card {
+  width: 100%;
+  text-decoration: none;
+  background: rgba(255,255,255,0.92);
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+  backdrop-filter: blur(2px);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  min-height: 0;
+}
+a.card:hover {
+  box-shadow: 0 8px 32px rgba(0,123,255,0.18);
+  border-color: #007bff;
+  transform: translateY(-6px) scale(1.03);
+}
+a.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  border-bottom: 1px solid #f0f0f0;
+}
+a.card .desc {
+  padding: 18px 12px 16px 12px;
+  font-size: 1.07rem;
+  color: #333;
+  text-align: center;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  flex: 1 1 auto;
+  background: transparent;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 900px) {
+  .main-header h1 {
+    font-size: 2rem;
+  }
+  .gallery-container {
+    gap: 20px;
+  }
+  a.card img {
+    height: 140px;
+  }
+  main {
+    padding: 30px 4vw 20px 4vw;
+  }
+}
+@media (max-width: 600px) {
+  .hamburger {
+    top: 10px;
+    right: 8px;
+    left: auto;
+    width: 32px;
+    height: 32px;
+    border-radius: 7px;
+    gap: 4px;
+  }
+  .hamburger span {
+    width: 18px;
+    height: 2px;
+  }
+  .sidebar-menu {
+    width: 140px;
+    right: -140px;
+    left: auto;
+    padding-top: 36px;
+  }
+  .menu-toggle:checked + .hamburger + .sidebar-menu {
+    right: 0;
+    left: auto;
+  }
+  .main-header {
+    margin-left: 40px;
+    padding-top: 12px;
+  }
+  main {
+    margin-left: 40px;
+    padding: 18px 2vw 10px 2vw;
+  }
+  .main-header h1 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+  }
+  .gallery-guide {
+    font-size: 0.98rem;
+    padding: 6px 10px;
+    border-radius: 10px;
+  }
+  .gallery-container {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  a.card {
+    border-radius: 10px;
+  }
+  a.card img {
+    height: 120px;
+  }
+  a.card .desc {
+    font-size: 0.96rem;
+    padding: 12px 6px 12px 6px;
+  }
+}
+
+
+/* 로그인 폼 컨테이너 */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 로그인 폼 */
+.login-form {
+  background: rgba(255,255,255,0.94);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 38px 32px 30px 32px;
+  min-width: 320px;
+  max-width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  border: 1px solid #e0e0e0;
+}
+
+.login-form h2 {
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #222;
+  margin-bottom: 26px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,123,255,0.06);
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.input-group label {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+}
+.input-group input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #b5d2ff;
+  font-size: 1.06rem;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  background: rgba(255,255,255,0.95);
+}
+.input-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px #b5e2ff33;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 6px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.login-btn:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #00aaff 100%);
+}
+
+.login-links {
+  margin-top: 18px;
+  font-size: 0.98rem;
+  color: #007bff;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.login-links a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s;
+}
+.login-links a:hover {
+  color: #0056b3;
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .login-form {
+    padding: 24px 8vw 20px 8vw;
+    min-width: 0;
+  }
+  .login-form h2 {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+}
+
+/* 회원가입 폼 컨테이너 */
+.signup-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 회원가입 폼 */
+.signup-form {
+  background: rgba(255,255,255,0.94);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 38px 32px 30px 32px;
+  min-width: 340px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  border: 1px solid #e0e0e0;
+}
+
+.signup-form h2 {
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #222;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,123,255,0.06);
+}
+
+.signup-desc {
+  font-size: 1.05rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 22px;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.input-group label {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+}
+.input-group input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #b5d2ff;
+  font-size: 1.06rem;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  background: rgba(255,255,255,0.95);
+}
+.input-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px #b5e2ff33;
+}
+
+.signup-btn {
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 6px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.signup-btn:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #00aaff 100%);
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .signup-form {
+    padding: 22px 4vw 16px 4vw;
+    min-width: 0;
+  }
+  .signup-form h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  .signup-desc {
+    font-size: 0.97rem;
+    margin-bottom: 14px;
+  }
+}
+
+/* 회원가입 완료 팝업 배경 */
+.popup-bg {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(30,33,93,0.75);
+  backdrop-filter: blur(2px);
+  justify-content: center;
+  align-items: center;
+}
+
+/* :target으로 팝업 활성화 */
+#complete:target {
+  display: flex;
+}
+
+/* 팝업 박스 */
+.popup {
+  background: rgba(255,255,255,0.97);
+  border-radius: 18px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.16);
+  padding: 36px 32px 28px 32px;
+  min-width: 260px;
+  max-width: 90vw;
+  text-align: center;
+  position: relative;
+  animation: popupShow 0.4s cubic-bezier(.77,0,.18,1);
+}
+@keyframes popupShow {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.popup-title {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #007bff;
+  margin-bottom: 14px;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+}
+.popup-desc {
+  font-size: 1.05rem;
+  color: #222;
+  margin-bottom: 24px;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+}
+.popup-btn,
+.popup-close {
+  display: inline-block;
+  padding: 10px 26px;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  font-size: 1.07rem;
+  font-weight: 700;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  text-decoration: none;
+  margin-bottom: 10px;
+  margin-right: 8px;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.popup-btn:hover,
+.popup-close:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #00aaff 100%);
+  color: #eafffd;
+}
+
+/* 팝업 반응형 */
+@media (max-width: 600px) {
+  .popup {
+    padding: 18px 4vw 16px 4vw;
+    min-width: 0;
+  }
+  .popup-title {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+  .popup-desc {
+    font-size: 0.97rem;
+    margin-bottom: 16px;
+  }
+}
+
+/* 비밀번호 찾기(재설정) 폼 컨테이너 */
+.reset-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 비밀번호 찾기 폼 */
+.reset-form {
+  background: rgba(255,255,255,0.94);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 38px 32px 30px 32px;
+  min-width: 340px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  border: 1px solid #e0e0e0;
+}
+
+.reset-form h2 {
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #222;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,123,255,0.06);
+}
+
+.reset-desc {
+  font-size: 1.05rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 22px;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.input-group label {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+}
+.input-group input {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #b5d2ff;
+  font-size: 1.06rem;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  background: rgba(255,255,255,0.95);
+}
+.input-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px #b5e2ff33;
+}
+
+.reset-btn {
+  display: inline-block;
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 6px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.reset-btn:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #00aaff 100%);
+  color: #eafffd;
+}
+
+.popup-bg {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+  background: rgba(30,33,93,0.75);
+  backdrop-filter: blur(2px);
+  justify-content: center;
+  align-items: center;
+}
+#reset-done:target {
+  display: flex;
+}
+
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .reset-form {
+    padding: 22px 4vw 16px 4vw;
+    min-width: 0;
+  }
+  .reset-form h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  .reset-desc {
+    font-size: 0.97rem;
+    margin-bottom: 14px;
+  }
+}
+
+
+
+
+
+/* 광고문의 폼 컨테이너 */
+.contact-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 광고문의 폼 */
+.contact-form {
+  background: rgba(255,255,255,0.94);
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+  padding: 38px 32px 30px 32px;
+  min-width: 340px;
+  max-width: 95vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(4px);
+  border: 1px solid #e0e0e0;
+}
+
+.contact-form h2 {
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  font-size: 2rem;
+  font-weight: 900;
+  color: #222;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 8px rgba(0,123,255,0.06);
+}
+
+.contact-desc {
+  font-size: 1.05rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 22px;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  line-height: 1.6;
+}
+
+.input-group {
+  width: 100%;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.input-group label {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #222;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+}
+.input-group input,
+.input-group textarea {
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #b5d2ff;
+  font-size: 1.06rem;
+  font-family: 'Nanum Gothic', 'Montserrat', Arial, sans-serif;
+  outline: none;
+  transition: border 0.2s, box-shadow 0.2s;
+  background: rgba(255,255,255,0.95);
+  resize: none;
+}
+.input-group textarea {
+  min-height: 90px;
+  max-height: 200px;
+}
+.input-group input:focus,
+.input-group textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px #b5e2ff33;
+}
+
+.contact-btn {
+  width: 100%;
+  padding: 12px 0;
+  margin-top: 6px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #007bff 60%, #00c6ff 100%);
+  color: #fff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  box-shadow: 0 2px 8px rgba(0,123,255,0.10);
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+.contact-btn:hover {
+  background: linear-gradient(90deg, #0056b3 60%, #00aaff 100%);
+}
+
+/* 반응형 */
+@media (max-width: 600px) {
+  .contact-form {
+    padding: 22px 4vw 16px 4vw;
+    min-width: 0;
+  }
+  .contact-form h2 {
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+  }
+  .contact-desc {
+    font-size: 0.97rem;
+    margin-bottom: 14px;
+  }
+}
+
+.site-title {
+  position: fixed;
+  top: 22px;
+  left: 22px;
+  z-index: 50;
+  font-family: 'Montserrat', 'Nanum Gothic', Arial, sans-serif;
+  font-weight: 900;
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  background: rgba(30,33,93,0.97);
+  border-radius: 10px;
+  padding: 8px 18px 8px 18px;
+  text-decoration: none;
+  box-shadow: 2px 0 16px rgba(0,0,0,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.site-title:hover {
+  background: #007bff;
+  color: #eafffd;
+  box-shadow: 0 4px 24px rgba(0,123,255,0.18);
+}
+
+/* 햄버거 메뉴가 오른쪽에 있을 때, 모바일에서 겹치지 않게 */
+@media (max-width: 600px) {
+  .site-title {
+    top: 10px;
+    left: 8px;
+    font-size: 0.98rem;
+    padding: 5px 12px 5px 12px;
+    border-radius: 7px;
+  }
+}

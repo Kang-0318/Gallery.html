@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>로그인 | 카드형 사진 갤러리</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="reset.css">
+</head>
+
+<body>
+  <!-- 오로라 배경 -->
+  <div class="aurora-bg"></div>
+  <a href="index.html" class="site-title">카드형 사진 갤러리</a>
+
+  <!-- 햄버거 메뉴 (오른쪽 상단) -->
+  <input type="checkbox" id="menu-toggle" class="menu-toggle" />
+  <label for="menu-toggle" class="hamburger" aria-label="메뉴 열기">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+  <nav class="sidebar-menu">
+    <a href="index.html">🏠 홈</a>
+    <a href="login.html">🔑 로그인</a>
+    <a href="contact.html">📢 광고문의</a>
+  </nav>
+
+  <!-- 로그인 박스 -->
+  <div class="login-container">
+    <form class="login-form" action="index.html" method="get" autocomplete="off">
+      <h2>로그인</h2>
+      <div class="input-group">
+        <label for="username">아이디</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+      </div>
+      <div class="input-group">
+        <label for="password">비밀번호</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="login-btn">로그인</button>
+      <div class="login-links">
+        <a href="register.html">회원가입</a>
+        <span>|</span>
+        <a href="forgot.html">비밀번호 찾기</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
